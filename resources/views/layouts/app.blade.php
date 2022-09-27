@@ -9,9 +9,33 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://cdn.tailwindcss.com"></script>
         <script src="https://cdn.jsdelivr.net/npm/boot strap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-
+        <script src="{{ asset('js/app.js') }}" defer></script>
         <style>
+            .nop {
+                margin: 4% auto;
+            }
+            
+            .redi {
+                width: 250px;
+                margin: auto;
+            }
+
+            .redo {
+
+                margin: auto;
+            }
+
+            .nip {
+                width: 200px;
+                height: 20px;
+            }
+
+            .nap {
+                margin: 5% auto;
+            }
             .cont {
                 margin-left: 10%;
                 width: 1600px;

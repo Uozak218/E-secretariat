@@ -19,13 +19,13 @@
             <div class="bloc-links">
                 <ul>
                     <li>
-                        <a >>Enregistrer</a>
+                        <a href="Enregistrer">>Enregistrer</a>
                     </li>
                     <li>
-                        <a >>Rechercher</a>
+                        <a href="Rechercher">>Rechercher</a>
                     </li>
                     <li>
-                        <a >>Rediger</a>
+                        <a href="Rediger">>Rediger</a>
                     </li>
                 </ul>
             </div>
@@ -44,10 +44,10 @@
             <div class="bloc-links1">
                 <ul>
                     <li>
-                        <a >>Enregistrer</a>
+                        <a href="EnregistrerContact">>Enregistrer</a>
                     </li>
                     <li>
-                        <a >>Rechercher</a>
+                        <a href="RechercherContact">>Rechercher</a>
                     </li>
                     <li>
                         <a href="#"></a>
@@ -69,10 +69,10 @@
             <div class="bloc-links2">
                 <ul>
                     <li>
-                        <a >>Enregistrer</a>
+                        <a href="EnregistrerCollaborateur">>Enregistrer</a>
                     </li>
                     <li>
-                        <a >>Rechercher</a>
+                        <a href="RechercherCollaborateur">>Rechercher</a>
                     </li>
                     <li>
                         <a href="#"></a>
