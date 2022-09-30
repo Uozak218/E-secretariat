@@ -89,10 +89,10 @@
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
                 <!-- Selected: "bg-gray-50" -->
-                @foreach($courrier_arr as $td)
+                @foreach($courrier_arr as $td)          
                     <tr>
                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{$td->type}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->contact}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->contact_id}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->objet}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->created_at}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->nbrpieces}}</td>

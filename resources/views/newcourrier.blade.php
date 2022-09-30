@@ -60,11 +60,11 @@
                                 <div class="test">
                                     <div class="flex justify-content-between">
                                         <div class="mt-4">
-                                            <label for="contact">Contact</label><br>
-                                            <select name="contact">
-                                                <option value="personne1">personne test1</option>
-                                                <option value="personne2">personne test2</option>
-                                                <option value="personne3">personne test3</option>
+                                            <label for="contact_id">Contact</label><br>
+                                            <select name="contact_id">
+                                                @foreach($contact_arr as $td)
+                                                    <option value="{{$td->id}}">{{$td->name}}</option>
+                                                @endforeach
                                             </select> <br><br>
                                         </div>
                                         

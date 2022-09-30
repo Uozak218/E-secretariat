@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\contact;
 use App\Models\courrier;
 use Illuminate\Http\Request;
 
@@ -14,7 +15,9 @@ class CourrierController extends Controller
 
     public function create()
     {
-        return view('newcourrier');
+        $contact = contact::all();
+
+        return view('newcourrier')->with('contact_arr', contact::all());;
     }
 
     public function store(Request $request)
@@ -22,8 +25,8 @@ class CourrierController extends Controller
         $cour_rier = new courrier();
         $cour_rier->type = $request->input('type');
         $cour_rier->objet = $request->input('objet');
-        $cour_rier->contact = $request->input('contact');
         $cour_rier->nbrpieces = $request->input('nbrpieces');
+        $cour_rier->contact_id = $request->input('contact_id');
         $cour_rier->save();
         return redirect('/dashboard');
     }
@@ -47,6 +50,10 @@ class CourrierController extends Controller
 
     public function search(courrier $courrier)
     {
+        request()->validate([
+            'search' => 'required|min:3'
+        ]);
+        
         $q = request()->input('search');
 
         $cour_rier = courrier::where('type', 'like', "%$q%")
