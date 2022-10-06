@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\contact;
 use App\Models\courrier;
 use Illuminate\Http\Request;
 
@@ -12,12 +13,12 @@ class CourrierController extends Controller
         //
     }
 
-    /*public function create()
+    public function create()
     {
         $contact = contact::all();
 
         return view('newcourrier')->with('contact_arr', contact::all());;
-    }*/
+    }
 
     public function store(Request $request)
     {
