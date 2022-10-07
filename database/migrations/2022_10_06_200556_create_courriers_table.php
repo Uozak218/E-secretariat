@@ -19,7 +19,7 @@ class CreateCourriersTable extends Migration
             $table->string('objet');
             $table->integer('nbrpieces');
             $table->foreignId('contact_id');
-            $table->foreign('contact_id')->references('id')->on('contacts');
+            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
