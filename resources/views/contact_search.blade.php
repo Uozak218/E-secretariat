@@ -20,7 +20,7 @@
                 <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                 </svg>
-                <a href="Enregistrer" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700">Gestion des courriers</a>
+                <a href="save_contact" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700">Gestion des contacts</a>
             </div>
             </li>
 
@@ -30,7 +30,7 @@
                 <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                 </svg>
-                <a href="#" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700" aria-current="page">Rechercher</a>
+                <a href="" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700" aria-current="page">Rechercher</a>
             </div>
             </li>
         </ol>
@@ -38,16 +38,16 @@
 
     </x-slot>
 
-    
+
     <div class="max-w-7xl nop">
         <div class="sm:flex">
             <div class="mt-4 sm:mt-0 sm:ml-16">
-                <form action="{{ route('courrier.search')}}">
+                <form action="{{ route('contact.search')}}">
                     <label for="search" class="block text-sm font-medium text-gray-700">Rechercher</label>
                     <div class="flex">
                         <div class="form-group mr-1">
-                            <input type="text" name="search" id="search" class="form-control block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
-                        </div> 
+                            <input type="text" name="search" value="{{request()->search ?? ''}}" id="search" class="form-control block w-full rounded-md border-gray-300 pr-12 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                        </div>
                         <button type="submit" class="btn btn-info">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -62,11 +62,11 @@
     <div class="px-4 sm:px-6 lg:px-8 max-w-7xl  mx-auto sm:px-6 lg:px-8 nop">
     <div class="sm:flex sm:items-center">
         <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Courriers</h1>
-        <p class="mt-2 text-sm text-gray-700">liste de tous les courriers.</p>
+        <h1 class="text-xl font-semibold text-gray-900">Contacts</h1>
+        <p class="mt-2 text-sm text-gray-700">liste de tous les contacts.</p>
         </div>
         <div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-            <a href="Enregistrer" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Nouveau courrier</a>
+            <a href="EnregistrerContact" class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto">Nouveau contact</a>
         </div>
     </div>
     <div class="mt-8 flex flex-col">
@@ -77,25 +77,21 @@
             <table class="min-w-full table-fixed divide-y divide-gray-300">
                 <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900">Type de courrier</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contact</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Objet</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date</th>
-                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Nombre de Pieces-Jointes</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Nom</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Email</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Adresse</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span class="sr-only">Edit</span>
                     </th>
                 </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200 bg-white">
-                <!-- Selected: "bg-gray-50" -->
-                @foreach($courrier_arr as $td)          
+
+                @foreach($contact_arr as $td)
                     <tr>
-                        <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{$td->type}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->contact_id}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->objet}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->created_at}}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->nbrpieces}}</td>
+                        <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{$td->name}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->email}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->adresse}}</td>
                         <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <td> <a href="delete/{{$td->id}}" class="text-indigo-600 hover:text-indigo-900">Delete</a> | <a href="edit/{{$td->id}}" class="text-indigo-600 hover:text-indigo-900">Edit</a></td>
                     </tr>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contact;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -19,11 +19,11 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
-        $con_tact = new contact();
-        $con_tact->name = $request->input('name');
-        $con_tact->email = $request->input('email');
-        $con_tact->adresse = $request->input('adresse');
-        $con_tact->save();
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->email = $request->input('email');
+        $contact->adresse = $request->input('adresse');
+        $contact->save();
         return redirect('/dashboard');
     }
 
@@ -44,16 +44,16 @@ class ContactController extends Controller
         return redirect('/dashboard');
     }*/
 
-    public function search(contact $contact)
+    public function search(Contact $contact)
     {
         $q = request()->input('search');
 
-        $con_tact = contact::where('name', 'like', "%$q%")
+        $contact = contact::where('name', 'like', "%$q%")
             ->orwhere('email', 'like', "%$q%")
             ->orwhere('adresse', 'like', "%$q%")
             ->paginate(6);
 
-        return view('contactsearch')->with('contact_arr', $con_tact);
+        return view('contactsearch')->with('contact_arr', $contact);
     }
 
     /*public function destroy(collaborateur $collaborateur, $id)

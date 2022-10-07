@@ -17,12 +17,12 @@ class UsersController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.users.liste')->with('users', $users);
+        return view('admin.users.liste_partner')->with('users', $users);
     }
 
     public function create()
     {
-       return view('admin.users.create', ['roles' => Role::all()]);
+       return view('admin.users.create_partner', ['roles' => Role::all()]);
     }
 
     public function store(Request $request)
@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
         $roles = Role::all();
         
-        return view('admin.users.edit', [
+        return view('admin.users.edit_partner', [
             'user' => $user,
             'roles' => $roles
         ]);

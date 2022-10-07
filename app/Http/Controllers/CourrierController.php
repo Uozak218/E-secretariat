@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\contact;
-use App\Models\courrier;
+use App\Models\Contact;
+use App\Models\Courrier;
 use Illuminate\Http\Request;
 
 class CourrierController extends Controller
@@ -15,19 +15,19 @@ class CourrierController extends Controller
 
     public function create()
     {
-        $contact = contact::all();
+        $contact = Contact::all();
 
-        return view('newcourrier')->with('contact_arr', contact::all());;
+        return view('newcourrier')->with('contact_arr', Contact::all());;
     }
 
     public function store(Request $request)
     {
-        $cour_rier = new courrier();
-        $cour_rier->type = $request->input('type');
-        $cour_rier->objet = $request->input('objet');
-        $cour_rier->nbrpieces = $request->input('nbrpieces');
-        $cour_rier->contact_id = $request->input('contact_id');
-        $cour_rier->save();
+        $courrier = new Courrier();
+        $courrier->type = $request->input('type');
+        $courrier->objet = $request->input('objet');
+        $courrier->nbrpieces = $request->input('nbrpieces');
+        $courrier->contact_id = $request->input('contact_id');
+        $courrier->save();
         return redirect('/dashboard');
     }
 
@@ -48,7 +48,7 @@ class CourrierController extends Controller
         return redirect('/dashboard');
     }*/
 
-    public function search(courrier $courrier)
+    public function search(Courrier $courrier)
     {
         request()->validate([
             'search' => 'required|min:3'
@@ -56,13 +56,13 @@ class CourrierController extends Controller
         
         $q = request()->input('search');
 
-        $cour_rier = courrier::where('type', 'like', "%$q%")
+        $courrier = courrier::where('type', 'like', "%$q%")
             ->orwhere('objet', 'like', "%$q%")
             ->orwhere('contact', 'like', "%$q%")
             ->orwhere('nbrpieces', 'like', "%$q%")
             ->paginate(6);
 
-        return view('courriersearch')->with('courrier_arr', $cour_rier);
+        return view('courriersearch')->with('courrier_arr', $courrier);
     }
 
     /*public function destroy(collaborateur $collaborateur, $id)
