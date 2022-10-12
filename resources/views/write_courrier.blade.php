@@ -30,7 +30,7 @@
                 <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
                 </svg>
-                <a href="" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700" aria-current="page">Enregistrer</a>
+                <a href="" class="ml-4 text-sm font-medium text-gray-900 hover:text-gray-700" aria-current="page">Rechercher</a>
             </div>
             </li>
         </ol>
@@ -38,49 +38,41 @@
 
     </x-slot>
 
-    <div class="flex-column">
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-primary overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 bg-primary mx-auto text-white border-b border-gray-200">
-                        <div class="text-center">
-                            <h4>Enregistrer un nouveau courrier</h4>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="px-4 sm:px-6 lg:px-8 max-w-7xl  mx-auto sm:px-6 lg:px-8 nop">
+    <div class="px-4 sm:px-6 lg:px-8 max-w-7xl  mx-auto sm:px-6 lg:px-8 nop">
         <div class="mt-8 flex flex-col">
             <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
                     <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
 
-                      <form class="space-y-6" action="save_new_courrier">
+                      <form class="space-y-6" action="#" method="POST">
                         <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
                           <div class="md:grid md:grid-cols-3 md:gap-6">
+                            <div class="md:col-span-1">
+                                <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
+                                <p class="mt-1 text-sm text-gray-500">This information will be displayed publicly so be careful what you share.</p>
+                            </div>
                             <div class="mt-5 md:col-span-2 md:mt-0">
                               <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="objet" class="block text-sm font-medium text-gray-700">Objet</label>
-                                    <input type="text" name="objet" id="objet" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                    <label for="first-name" class="block text-sm font-medium text-gray-700">Objet</label>
+                                    <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="contact_id" class="block text-sm font-medium text-gray-700">Contact</label>
-                                    <select id="contact_id" name="contact_id" autocomplete class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                    <label for="contact" class="block text-sm font-medium text-gray-700">Contact</label>
+                                    <select id="contact" name="contact" autocomplete="contact-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                                     @foreach($contact_arr as $td)
-                                      <option value="{{$td->name}}">{{$td->name}}</option>
+                                      <option value="{{$td->id}}">{{$td->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                      <label for="collaborateur_id" class="block text-sm font-medium text-gray-700">Collaborateur</label>
-                                      <select id="collaborateur_id" name="collaborateur_id" autocomplete class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
-                                       @foreach($user_arr as $td)
-                                        <option value="{{$td->name}}">{{$td->name}}</option>
+                                      <label for="Model" class="block text-sm font-medium text-gray-700">Model</label>
+                                      <select id="Model" name="Model" autocomplete="model-name" class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
+                                      <option value="NULL">Aucun</option>
+                                      @foreach($model_arr as $td)
+                                        <option value="{{$td->id}}">{{$td->name}}</option>
                                       @endforeach
                                       </select>
                                 </div>
@@ -92,13 +84,13 @@
                                         <option value="Depart">Depart</option>
                                       </select>
                                 </div>
-                              </div> <br>
-                              
-                                <div class="col-span-6 sm:col-span-3">
-                                    <label for="nbrpieces" class="block text-sm font-medium text-gray-700">Nombre de pieces jointes</label>
-                                    <input type="number" name="nbrpieces" id="nbrpieces" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                              </div>
+
+                                <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
+                                <div class="mt-1">
+                                    <textarea id="message" name="message" rows="3" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"></textarea>
                                 </div>
-                                
+
                                 <div>
                                 <label class="block text-sm font-medium text-gray-700">Pieces Jointes</label>
                                 <div class="mt-1 flex justify-center rounded-md border-2 border-dashed border-gray-300 px-6 pt-5 pb-6">

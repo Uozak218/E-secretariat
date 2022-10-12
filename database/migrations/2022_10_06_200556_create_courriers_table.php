@@ -17,9 +17,13 @@ class CreateCourriersTable extends Migration
             $table->id();
             $table->string('type');
             $table->string('objet');
+            $table->string('name')->nullable();
+            $table->mediumText('content')->nullable();
             $table->integer('nbrpieces');
+            $table->foreignId('collaborateur_id');
             $table->foreignId('contact_id');
-            $table->foreign('contact_id')->references('id')->on('contacts')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('contact_id')->references('name')->on('contacts')->onDelete("cascade")->onUpdate("cascade");
+            $table->foreign('collaborateur_id')->references('name')->on('users')->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }

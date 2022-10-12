@@ -19,13 +19,16 @@
             <div class="bloc-links">
                 <ul>
                     <li>
-                        <a href="Enregistrer">>Enregistrer</a>
+                        <a href="save_courrier">>Enregistrer</a>
                     </li>
                     <li>
-                        <a href="Rechercher">>Rechercher</a>
+                        <a href="search_courrier">>Rechercher</a>
                     </li>
                     <li>
-                        <a href="Rediger">>Rediger</a>
+                        <a href="list_model">>Modeles</a>
+                    </li>
+                    <li>
+                        <a href="write_new_courrier">>Rediger</a>
                     </li>
                 </ul>
             </div>
@@ -44,10 +47,10 @@
             <div class="bloc-links1">
                 <ul>
                     <li>
-                        <a href="EnregistrerContact">>Enregistrer</a>
+                        <a href="save_contact">>Enregistrer</a>
                     </li>
                     <li>
-                        <a href="RechercherContact">>Rechercher</a>
+                        <a href="search_contact">>Rechercher</a>
                     </li>
                     <li>
                         <a href="#"></a>

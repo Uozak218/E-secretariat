@@ -82,6 +82,7 @@
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Objet</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Date</th>
                     <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Nombre de Pieces-Jointes</th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Collaborateur</th>
                     <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6">
                     <span class="sr-only">Edit</span>
                     </th>
@@ -96,6 +97,7 @@
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->objet}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->created_at}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->nbrpieces}}</td>
+                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$td->collaborateur_id}}</td>
                         <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <td> <a href="delete_courrier/{{$td->id}}" class="text-indigo-600 hover:text-indigo-900">Delete</a> | <a href="edit_courrrier/{{$td->id}}" class="text-indigo-600 hover:text-indigo-900">Edit</a></td>
                     </tr>

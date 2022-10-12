@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Contact;
+use App\Models\CourrierModel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 
-class ContactController extends Controller
+class CourrierModelController extends Controller
 {
     public function index()
     {
@@ -14,16 +15,15 @@ class ContactController extends Controller
 
     public function create()
     {
-        return view('new_contact');
+        return view('courrier_model')->with('model_arr', CourrierModel::all());
     }
 
     public function store(Request $request)
     {
-        $contact = new Contact();
-        $contact->name = $request->input('name');
-        $contact->email = $request->input('email');
-        $contact->adress = $request->input('adress');
-        $contact->save();
+        $model = new CourrierModel();
+        $model->name = $request->input('name');
+        $model->content = $request->input('content');
+        $model->save();
         return redirect('/dashboard');
     }
 
@@ -44,16 +44,15 @@ class ContactController extends Controller
         return redirect('/dashboard');
     }*/
 
-    public function search(Contact $contact)
+    public function search(CourrierModel $courrierModel)
     {
         $q = request()->input('search');
 
-        $contact = contact::where('name', 'like', "%$q%")
-            ->orwhere('email', 'like', "%$q%")
-            ->orwhere('adress', 'like', "%$q%")
+        $model = Model::where('name', 'like', "%$q%")
+            ->orwhere('content', 'like', "%$q%")
             ->paginate(6);
 
-        return view('contact_search')->with('contact_arr', $contact);
+        return view('model_search')->with('model_arr', $model);
     }
 
     /*public function destroy(collaborateur $collaborateur, $id)

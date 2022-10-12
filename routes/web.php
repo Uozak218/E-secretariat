@@ -2,9 +2,12 @@
 
 use App\Models\Contact;
 use App\Models\Courrier;
+use App\Models\CourrierModel;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourrierController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\CourrierModelController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,6 +28,11 @@ Route::get('search_courrier', function () {
     return view('see_courrier')->with('courrier_arr', Courrier::all());
 });
 
+
+Route::get('write_new_courrier', function () {
+    return view('write_courrier')->with('contact_arr', Contact::all())->with('model_arr', CourrierModel::all());
+});
+
 Route::get('delete_courrier/{id}', [CourrierController::class, 'destroy']);
 
 Route::get('edit_courrier/{id}', [CourrierController::class, 'edit']);
@@ -35,12 +43,20 @@ Route::get('search_specific_courrier', [CourrierController::class, 'search'])->n
 
 
 
+Route::get('list_model', [CourrierModelController::class, 'Create']);
+
+Route::get('save_model', [CourrierModelController::class, 'Store']);
+
+Route::get('save_new_model', function () {
+    return view('new_model');
+});
+
 
 Route::get('save_contact', [ContactController::class, 'Create']);
 
 Route::get('save_new_contact', [ContactController::class, 'Store']);
 
-Route::get('search_Contact', function () {
+Route::get('search_contact', function () {
     return view('see_contact')->with('contact_arr', Contact::all());
 });
 

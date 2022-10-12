@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Courrier;
 use Illuminate\Http\Request;
+use App\Models\CourrierModel;
+use App\Models\User;
 
 class CourrierController extends Controller
 {
@@ -17,7 +19,7 @@ class CourrierController extends Controller
     {
         $contact = Contact::all();
 
-        return view('newcourrier')->with('contact_arr', Contact::all());;
+        return view('new_courrier')->with('user_arr', User::all())->with('contact_arr', Contact::all())->with('model_arr', CourrierModel::all());
     }
 
     public function store(Request $request)
@@ -27,6 +29,9 @@ class CourrierController extends Controller
         $courrier->objet = $request->input('objet');
         $courrier->nbrpieces = $request->input('nbrpieces');
         $courrier->contact_id = $request->input('contact_id');
+        $courrier->name = $request->input('name');
+        $courrier->content = $request->input('content');
+        $courrier->collaborateur_id = $request->input('collaborateur_id');
         $courrier->save();
         return redirect('/dashboard');
     }
@@ -62,7 +67,7 @@ class CourrierController extends Controller
             ->orwhere('nbrpieces', 'like', "%$q%")
             ->paginate(6);
 
-        return view('courriersearch')->with('courrier_arr', $courrier);
+        return view('courrier_search')->with('courrier_arr', $courrier);
     }
 
     /*public function destroy(collaborateur $collaborateur, $id)
