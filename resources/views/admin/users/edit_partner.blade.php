@@ -37,30 +37,53 @@
         </nav>
     </x-slot>
 
-    <div class="px-4 sm:px-6 lg:px-8 max-w-7xl  mx-auto sm:px-6 lg:px-8 nop">
-    <div class="sm:flex sm:items-center">
-        <div class="sm:flex-auto">
-        <h1 class="text-xl font-semibold text-gray-900">Modifier <strong>{{ $user->name  }}</strong> </h1>
-         </div>
-    </div>
     <div class="mt-8 flex flex-col">
         <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-            <form action="{{ route('admin.users.update', $user) }}" method="POST">                   
-                @csrf
-                @method('PATCH')
-                @foreach($roles as $role)
-                    <div class="form-group form-check">
-                        <input type="checkbox" class="form-check-input" name="roles[]" value="{{ $role->id }}" 
-                        id="{{ $role->id }}" @foreach($user->roles as $userRole) @if ($userRole->id === $role->id) checked @endif @endforeach>
-                        <label for="{{ $role->id }}" class="form-check-label">{{ $role->name }}</label>
-                    </div>
-                @endforeach
-                <button type="submit" class="flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Modifier</button>
-            </form>
-        </div>
-        </div>
-    </div>
-    </div>
+            <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
+                <div class="relative overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">               
+                    <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:p-6">
+                        <div class="sm:flex-auto">
+                            <h1 class="text-xl font-semibold text-gray-900">Modifier <strong>{{ $user->name  }}</strong> </h1>
+                        </div> <br>
+                        <div class="md:grid md:grid-cols-3 md:gap-6">
+                            <form action="{{ route('admin.users.update', $user) }}" method="POST">                   
+                                @csrf
+                                @method('PATCH')
 
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                                    <input type="text" name="name" id="name" value="{{ $user->name }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                </div>
+
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                                    <input type="text" name="email" id="eamil" value="{{ $user->email }}" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                                </div> <br>
+
+                                <h3>Role:</h3>
+                                @foreach($roles as $role)
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" name="roles[]" value="{{ $role->id }}" 
+                                        id="{{ $role->id }}" @foreach($user->roles as $userRole) @if ($userRole->id === $role->id) checked @endif @endforeach>
+                                        <label for="{{ $role->id }}" class="form-check-label">{{ $role->name }}</label>
+                                    </div>
+                                @endforeach <br>
+
+                                <h3>Statut:</h3>
+                                @foreach($statuts as $statut)
+                                    <div class="form-group form-check">
+                                        <input type="checkbox" class="form-check-input" name="statuts[]" value="{{ $statut->id }}" 
+                                        id="{{ $statut->id }}" @foreach($user->statut as $userStatut) @if ($userStatut->id === $statut->id) checked @endif @endforeach>
+                                        <label for="{{ $statut->id }}" class="form-check-label">{{ $statut->name }}</label>
+                                    </div>
+                                @endforeach
+                                <button type="submit" class="flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Modifier</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>        
+    </div>  
+                
 </x-app-layout>

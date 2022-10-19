@@ -1,13 +1,17 @@
 <?php
 
+use App\Models\User;
 use App\Models\Contact;
 use App\Models\Courrier;
+use App\Models\Annotation;
 use App\Models\CourrierModel;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\CourrierController;
+use App\Http\Controllers\AnnotationController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\CourrierModelController;
+use App\Http\Controllers\MailController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,15 +21,20 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/collaborateur_dashboard', function() {
+    return view('partner.dashboard_partner')->with('courrier_arr', Courrier::all());
+});
    
+Route::get('annotation', [AnnotationController::class, 'Create']);
 
+Route::get('save_annotation', [AnnotationController::class, 'Store']);
 
 Route::get('save_courrier', [CourrierController::class, 'Create']);
 
 Route::get('save_new_courrier', [CourrierController::class, 'Store']);
 
 Route::get('search_courrier', function () {
-    return view('see_courrier')->with('courrier_arr', Courrier::all());
+    return view('see_courrier')->with('courrier_arr', Courrier::all())->with('contact_arr', Contact::all())->with('user_arr', User::all());
 });
 
 
@@ -68,8 +77,12 @@ Route::get('update_contact/{id}', [ContactController::class, 'update']);
 
 Route::get('search_specific_contact', [ContactController::class, 'search'])->name('contact.search');
 
+Route::get('save_new_mail', function () {
+    return view('new_mail');
+});
 
-
+Route::get('send_Mail', [MailController::class, 'MailSend']);
+Route::post('send_Mail', [MailController::class, 'MailSend']);
 
 Route::middleware('auth', 'role:admin')->prefix('admin')->name('admin.')->group(function () {
     Route::resource('users', UsersController::class);

@@ -71,7 +71,7 @@
                                     <label for="contact_id" class="block text-sm font-medium text-gray-700">Contact</label>
                                     <select id="contact_id" name="contact_id" autocomplete class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                                     @foreach($contact_arr as $td)
-                                      <option value="{{$td->name}}">{{$td->name}}</option>
+                                      <option value="{{$td->id}}">{{$td->name}}</option>
                                     @endforeach
                                     </select>
                                 </div>
@@ -80,8 +80,8 @@
                                       <label for="collaborateur_id" class="block text-sm font-medium text-gray-700">Collaborateur</label>
                                       <select id="collaborateur_id" name="collaborateur_id" autocomplete class="mt-1 block w-full rounded-md border border-gray-300 bg-white py-2 px-3 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm">
                                        @foreach($user_arr as $td)
-                                        <option value="{{$td->name}}">{{$td->name}}</option>
-                                      @endforeach
+                                            <option value="{{$td->id}}">{{$td->name}}</option>
+                                        @endforeach
                                       </select>
                                 </div>
 

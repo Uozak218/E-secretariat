@@ -90,7 +90,7 @@
                         <td class="whitespace-nowrap py-4 pr-3 text-sm font-medium text-gray-900">{{$user->name}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->email}}</td>
                         <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{ implode(', ', $user->roles()->get()->pluck('name')->toArray()) }}</td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{{$user->status}}</td>
+                        <td class="whitespace-nowrap  px-3 py-4 text-sm text-gray-500">{{ implode(', ', $user->statut()->get()->pluck('name')->toArray()) }}</td>
                         <td class="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                         <td> 
                             <a href="{{ route('admin.users.edit', $user->id) }}" class="btn btn-primary">Edit</a>
